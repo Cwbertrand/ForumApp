@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+    
     <title>FORUM</title>
 </head>
 <body>
@@ -19,6 +22,7 @@
                 <nav>
                     <div id="nav-left">
                         <a href="/">Accueil</a>
+
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
@@ -41,7 +45,32 @@
                             ?>
                             <a href="./view/security/login.php">Connexion</a>
                             <a href="/security/register.html">Inscription</a>
-                            <a href="index.php?ctrl=forum&action=listCategorie">la liste des Categories</a>
+
+                            <!--NavBar Section-->
+                            <div class="navbar">
+                                <nav class="navigation hide" id="navigation">
+                                    <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
+                                    <ul class="nav-list">
+                                        <li class="nav-item"><a href="index.php?ctrl=forum&action=listCategorie">Forums</a></li>
+                                        
+                                    </ul>
+                                </nav>
+                                <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
+                                <div class="brand">My Forum</div>
+                            </div>
+
+                            <!--SearchBox Section-->
+                            <div class="search-box">
+                                <div>
+                                    <select name="" id="">
+                                        <option value="Everything">Everything</option>
+                                        <option value="Titles">Titles</option>
+                                        <option value="Descriptions">Descriptions</option>
+                                    </select>
+                                    <input type="text" name="q" placeholder="search ...">
+                                    <button><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
                         <?php
                         }
                 
@@ -65,6 +94,8 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous">
     </script>
+    <script src="<?= PUBLIC_DIR ?>/js/main.js"></script>
+    
     <script>
 
         $(document).ready(function(){
