@@ -27,12 +27,13 @@ use Model\Managers\MessageManager;
 
         public function listCategorie(){
 
-            $listCategorie = new CategorieManager();
+            $categorieManager = new CategorieManager();
 
             return [
                 "view" => VIEW_DIR."forum/listCategorie.php",
                 "data" => [
-                    "categories" => $listCategorie->findAll(['nomCategorie', 'DESC'])
+                    "categories" => $categorieManager->findAll(['nomCategorie', 'DESC']),
+                    
                 ]
             ];
         
@@ -40,12 +41,12 @@ use Model\Managers\MessageManager;
 
         public function listMessage($id){
             
-            $listMessages = new MessageManager();
+            $messageManager = new MessageManager();
             return [
                 "view" => VIEW_DIR."forum/listMessage.php",
                 "data" => [
                     //the findMessageBySubject is from the messageManager, this function gets all the messages related to a particular subject
-                    'messages' => $listMessages->findMessageBySubject($id),
+                    'messages' => $messageManager->findMessageBySubject($id),
                     //idtopic is passed in the listmessage so as to be able to add messages patterning to a particular subject
                     'idtopic' => $id
                 ]
@@ -68,10 +69,10 @@ use Model\Managers\MessageManager;
                 $this->redirectTo('forum', 'listCategorie');
         }
 
-        /*
         //// INSERT SUJET /////
         public function insertSubject($id){
             
+            $messageManager = new MessageManager();
             $subjectManager = new SubjectManager();
             //userid is diclared to be fixed which is = to userid 1
             $userId = 3;
@@ -79,17 +80,19 @@ use Model\Managers\MessageManager;
             
             //filtre l'input
             $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_SPECIAL_CHARS);
-                if($subject){
+            $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
+                if($subject && $message){
                     //the add() function is from the manager.php which demands that you pass some parameters to be able to insert values
-                    $subjectManager->add(["categorie_id" => $id, "statuspost" => $status, "user_id" => $userId, "Theme" => $subject]);
+                    $subjectid = $subjectManager->add(["categorie_id" => $id, "statuspost" => $status, "user_id" => $userId, "Theme" => $subject]);
+
+                    $messageManager->add(['message' => $message, 'user_id' => $userId, 'subject_id' => $subjectid]);
                 }
 
                 //this redirectTo() is from AbstractController class which demands 3 parameters
                 $this->redirectTo('forum', 'listSubject', $id);
-        }*/
+        }
 
         ///// INSERT MESSAGES ///
-        /*
         public function insertMessage($id){
             
             $MessageManager = new MessageManager();
@@ -104,33 +107,35 @@ use Model\Managers\MessageManager;
                 }
 
                 //this redirectTo() is from AbstractController class which demands 3 parameters
-                $this->redirectTo('forum', 'AddMessage', $id);
-        }*/
-
-        public function addMessage($id){
-
-            $subjectManager = new SubjectManager();
-            $userId = 3;
-            $status = true;
-
-                $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_SPECIAL_CHARS);
-                $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
-
-                if($subject && $message){
-                    $lastInsertId = $subjectManager->add(["categorie_id" => $id, "statuspost" => $status, "user_id" => $userId, "Theme" => $subject]);
-
-                    $MessageManager = new MessageManager();
-                    $MessageManager->add(['message' => $message, 'user_id' => $userId, 'subject_id' => $lastInsertId]);
-
-                    $this->redirectTo('forum', 'listSubject', $id);
-                }
-
-            return [
-                "view" => VIEW_DIR."forum/AddMessage.php",
-                "data" => [
-                    'idcategorie' => $id
-                ]
-            ];
-        
+                $this->redirectTo('forum', 'listMessage', $id);
         }
+
+        // public function addMessage($id){
+
+        //     $categorieManager = new CategorieManager();
+        //     $subjectManager = new SubjectManager();
+        //     $MessageManager = new MessageManager();
+
+        //     $userId = 3;
+        //     $status = true;
+
+        //     $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_SPECIAL_CHARS);
+        //     $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        //     if($subject && $message){
+        //         $lastInsertId = $subjectManager->add(["categorie_id" => $id, "statusPost" => $status, "user_id" => $userId, "theme" => $subject]);
+
+        //         $MessageManager->add(['message' => $message, 'user_id' => $userId, 'subject_id' => $lastInsertId]);
+
+        //         $this->redirectTo('forum', 'listSubject', $id);
+        //     }
+
+        //     return [
+        //         "view" => VIEW_DIR."forum/AddMessage.php",
+        //         "data" => [
+        //             "categories" => $categorieManager->findAll(['nomCategorie', 'DESC'])
+        //         ]
+        //     ];
+        
+        // }
     }

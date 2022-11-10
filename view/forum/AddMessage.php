@@ -1,5 +1,7 @@
 <?php
+$categories = $result["data"]['categories'];
 $idcategorie = $result["data"]['idcategorie'];
+
 
 ?>
     <div class="container">
@@ -9,7 +11,14 @@ $idcategorie = $result["data"]['idcategorie'];
             </div>
         </div>
         <!--Comment Area-->
-        <form method="POST" action="index.php?ctrl=forum&action=addMessage&id=<?= $idcategorie ?>">
+        <form method="POST" action="index.php?ctrl=forum&action=addMessage&id=<?= $idcategorie ;?>">
+            <label class="">Categorie</label><br>
+            <select class="form-select" name="categorie">
+                    <option selected>Select</option>
+                <?php foreach ($categories as $categorie) {?>
+                    <option value="<?= $categorie->getId() ;?>"><?= $categorie->getNomCategorie() ?></option>
+                <?php } ?>  
+            </select> <br>
             <div class="margin">
                 <label  class="form-label">Sujet</label>
                 <input type="text" name="subject" class="form-control"  placeholder="tapez le sujet...">
