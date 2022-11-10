@@ -24,8 +24,8 @@ $idtopic = $result["data"]['idtopic'];
                         <div>Points: <u>4586</u></div>
                     </div>
                     <div class="content">
-                    <div>Date posté:   <u><?= $message->getCreateAt(); ?></u></div>
-                    <p> <?= $message->getMessage() ?> </p>
+                        <div>Date posté:   <u><?= $message->getCreateAt(); ?></u></div>
+                        <p> <?= $message->getMessage() ?> </p>
                         <div class="comment">
                             <button onclick="showComment()">Comment</button>
                         </div>
@@ -39,7 +39,7 @@ $idtopic = $result["data"]['idtopic'];
         <form method="POST" action="index.php?ctrl=forum&action=insertMessage&id=<?= $idtopic ?>">
             <div class="comment-area hide" id="comment-area">
                 <textarea name="comment" id="" placeholder="comment here ... "></textarea>
-                <a href="index.php?ctrl=forum&action=listSubject&id=<?= $idtopic ?>"><button type="submit" name="submit" value="submit">Submit</button></a>
+                <input type="submit" name="submit" value="Submit">
             </div>
         </form>
     </div>

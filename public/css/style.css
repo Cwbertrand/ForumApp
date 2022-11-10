@@ -36,11 +36,14 @@ h1{
     margin-top:20px;
 }
 
-.subforum-title{
-    background-color:#292B2E;
+.subforum-title {
+    background-color: #292B2E;
     padding: 5px;
     border-radius: 5px;
-    margin:4px;
+    margin: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .subforum-row{

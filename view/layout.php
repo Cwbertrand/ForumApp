@@ -51,6 +51,7 @@
                                 <nav class="navigation hide" id="navigation">
                                     <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
                                     <ul class="nav-list">
+                                        <li class="nav-item"><a href="index.php?ctrl=forum&action=AddMessage">Create A Topic</a></li>
                                         <li class="nav-item"><a href="index.php?ctrl=forum&action=listCategorie">Forums</a></li>
                                         
                                     </ul>
