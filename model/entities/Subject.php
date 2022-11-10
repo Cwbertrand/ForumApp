@@ -81,6 +81,15 @@ final class Subject extends Entity
                 return $this->statuspost;
         }
 
+        public function showStatusPost(){
+
+                if ($this->statuspost === false) {
+                        return '<i class="fa-solid fa-lock" style="color:red;"></i>';
+                }else{
+                        return '<i class="fa-solid fa-lock-open" style="color:green;"></i>';
+                }
+        }
+
         /**
          * Set the value of statuspost
          *
