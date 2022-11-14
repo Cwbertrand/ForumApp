@@ -57,9 +57,6 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 }
                 
             }
-            
-            
-        
     }
 
     //SIGN IN AN EXISTING USER
@@ -86,14 +83,14 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     //if same, user session logged in should start
                     session::setUser($userEmail);
                     Session::addFlash("success", "Bienvenue ".$userEmail['pseudo']);
-                    $this->redirectTo('profilepage');
+                    //header('Location: view/layout.php');
+                    return $this->redirectTo('/');
                 }else {
                     header('Location: view/security/login.php');
                     Session::addFlash("error", "Cet utilisateur n'existe pas !");
                 }
-                
-                
             }
+            
     }
 
     // SIGN OUT EXISTING USER
@@ -101,6 +98,6 @@ class SecurityController extends AbstractController implements ControllerInterfa
 			
         Session::removeUser();
         Session::addFlash("success", "A bientôt !");
-        $this->redirectTo('home');
+        $this->redirectTo('/');
     }
 }

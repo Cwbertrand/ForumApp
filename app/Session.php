@@ -1,5 +1,8 @@
 <?php
+
     namespace App;
+
+    require_once("./model/entities/User.php");
 
     class Session{
 
@@ -42,7 +45,7 @@
         }
 
         public static function isAdmin(){
-            if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
+            if(self::getUser() && $_SESSION['user']['role'] === 1){
                 return true;
             }
             return false;

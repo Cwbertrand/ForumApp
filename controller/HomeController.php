@@ -6,8 +6,8 @@
     use App\AbstractController;
     use App\ControllerInterface;
     use Model\Managers\UserManager;
-    use Model\Managers\TopicManager;
-    use Model\Managers\PostManager;
+    use Model\Managers\SubjectManager;
+    use Model\Managers\MessageManager;
     
     class HomeController extends AbstractController implements ControllerInterface{
 
@@ -19,15 +19,15 @@
             }
             
         public function users(){
-            $this->restrictTo("ROLE_USER");
+            $this->restrictTo();
 
-            //$manager = new UserManager();
-            //$users = $manager->findAll(['registerdate', 'DESC']);
+            $usermanager = new UserManager();
+            $users = $usermanager->findAll();
 
             return [
                 "view" => VIEW_DIR."security/users.php",
                 "data" => [
-                    //"users" => $users
+                    "users" => $users
                 ]
             ];
         }

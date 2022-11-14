@@ -19,9 +19,9 @@
 
         }
 
-        public function restrictTo($role){
+        public function restrictTo(){
             
-            if(!Session::getUser() || !Session::getUser()->hasRole($role)){
+            if(!Session::getUser() || !$_SESSION['user']['role'] === 1){
                 $this->redirectTo("security", "login");
             }
             return;

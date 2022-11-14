@@ -1,3 +1,6 @@
+<?php 
+    use App\Session;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +24,13 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="/">Accueil</a>
+                        <a href="index.php?ctrl=home&action=/">Accueil</a>
                         <a href="index.php?ctrl=forum&action=listCategorie">Forums</a>
 
                         <?php
+                        //var_dump($_SESSION['user']['role']); die();
                         if(App\Session::isAdmin()){
+                            
                             ?>
                             <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
                         
@@ -37,12 +42,15 @@
                     <?php
                         
                         if(App\Session::getUser()){
+                            //var_dump($_SESSION['user']); die();
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                            <a href="/security/logout.html">Déconnexion</a>
+                            <a href="index.php?ctrl=forum&action=profilePage"><span class="fas fa-user"></span>&nbsp;<?= $_SESSION['user']['pseudo']; ?></a>
+                            <a href="\PROJECT%20IN%20PROGRESS/Forum/index.php?ctrl=security&action=logout">Déconnexion</a>
+                            
                             <?php
                         }
                         else{
+                            
                             ?>
                             <a href="./view/security/login.php">Connexion</a>
                             <a href="./view/security/register.php">Inscription</a>

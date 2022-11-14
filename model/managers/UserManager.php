@@ -33,5 +33,15 @@
             );
         }
 
+        public function userId($id){
+            $sql = "SELECT * FROM  ".$this->tableName."
+                    WHERE id_user = :id";
+                    
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]),
+                $this->className
+            );
+        }
+
 
     }

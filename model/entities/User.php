@@ -121,4 +121,13 @@ class User extends Entity{
 
         return $this;
     }
+
+    public function showRole(){
+
+        if ($this->role === 1) {
+                return 'ADMIN';
+        }else{
+                return 'USER';
+        }
+}
 }

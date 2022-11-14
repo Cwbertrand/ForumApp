@@ -8,6 +8,7 @@ use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\CategorieManager;
 use Model\Managers\MessageManager;
+use Model\Managers\UserManager;
 
     class ForumController extends AbstractController implements ControllerInterface{
 
@@ -73,9 +74,11 @@ use Model\Managers\MessageManager;
         public function insertSubject($id){
             
             $messageManager = new MessageManager();
+            $userManager = new UserManager();
             $subjectManager = new SubjectManager();
             //userid is diclared to be fixed which is = to userid 1
-            $userId = 3;
+            $userId = \App\Session::getUser();
+            var_dump($userId); die();
             $status = true;
             
             //filtre l'input
@@ -138,4 +141,12 @@ use Model\Managers\MessageManager;
         //     ];
         
         // }
+
+        //profile Page
+        public function profilePage(){
+                
+            return [
+                "view" => VIEW_DIR."forum/profilepage.php"
+            ];
+        }
     }
