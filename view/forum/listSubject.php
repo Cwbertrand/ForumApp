@@ -32,25 +32,26 @@ $idcategorie = $result["data"]['idcategorie'];
 
                         <div class="last-reply">
                             <?php if ($subject->getStatusPost() === true) { ?>
-                                <a href="index.php?ctrl=forum&action=listMessage&id=<?= $subject->getId() ;?>">this is open</a>
+                                <a class="btn-unlock" href="index.php?ctrl=forum&action=listMessage&id=<?= $subject->getId() ;?>">Open</a>
+                            <?php }else{ ?>
+                                <a class="btn-lock">Lock</a>
                             <?php } ?>
-                            <br>Commercé par <b><a href=""><?php echo $subject->getUser()->getPseudo() ?></a></b>
                         </div>
                     </div>
                 <?php } ?>
-
-                <form method="POST" action="index.php?ctrl=forum&action=insertSubject&id=<?= $idcategorie ?>">
-                <div class="">
-                    <label class="">Sujet</label>
-                    <input type="text" name="subject">
-                    <label class="">Message</label>
-                    <textarea class="" type="text" name="message"></textarea>
-                    <input type="submit" name="submit" value="Submit">
-                </div>
-            </form>
-                
                 <!--ends here-->
             </div>
+            <form method="POST" action="index.php?ctrl=forum&action=insertSubject&id=<?= $idcategorie ?>">
+                <div class="addmess_title">
+                    <label class="label">Sujet</label>
+                    <input type="text" name="subject" class="subject">
+                    <div class="comment-area" id="comment-area">
+                        <label class="label">Message</label>
+                        <textarea class="message" type="text" name="message"></textarea>
+                    </div>
+                    <input type="submit" name="submit" value="Submit" class="btn_subject">
+                </div>
+            </form>
         <!--Pagination starts-->
             <div class="pagination">
                 pages: <a href="">1</a><a href="">2</a><a href="">3</a>

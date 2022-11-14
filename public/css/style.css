@@ -5,6 +5,46 @@
     box-sizing: border-box;
 }
 
+.addmess_title{
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    border: rgba(199, 195, 195, 0.689) 0.1px solid;
+    border-radius: 7px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: rgba(173, 167, 167, 0.434) 0.5px 5px 15px;
+}
+
+.addmess_title .label,
+.comment-area .label{
+    font-size: 20px;
+    margin: 20px 0px;
+}
+
+.addmess_title .subject{
+    height: 40px;
+    padding: 0px 30px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.addmess_title .message{
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.addmess_title .btn_subject{
+    display: block;
+    background-color: rebeccapurple;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 html{
     font-size: 14px;
     font-family: 'Titillium Web', sans-serif;
@@ -25,7 +65,7 @@ h1{
 
 
 /* ########################################### */
-/*           Forums.html                       */
+/*           List Category.php                 */
 /* ########################################### */
 .container{
     margin: 20px;
@@ -38,6 +78,7 @@ h1{
 
 .subforum-title {
     background-color: #292B2E;
+    width: 66%;
     padding: 5px;
     border-radius: 5px;
     margin: 4px;
@@ -125,7 +166,7 @@ h1{
         font-size: 16px;
     }
 
-  }
+}
 /*   Header Section    */
 
 header{
@@ -173,6 +214,18 @@ header{
 
 .hide{
     display: none;
+}
+
+.addCategorie{
+    background-color:#000000;
+    border: #fff .5px solid;
+    display: block;
+    color: #fff;
+    padding: 10px 6px;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow:1px 2px 3px #e8e5ea5a;
+
 }
 
 .bar-icon{
@@ -282,7 +335,7 @@ footer{
 }
 
 /* ########################################### */
-/*            posts.html                       */
+/*            List subject.php                 */
 /* ########################################### */
 
 /* posts table's head  */
@@ -325,6 +378,25 @@ footer{
     background-color: #131415;
 }
 
+.table-row .last-reply .btn-unlock,
+.table-row .last-reply .btn-lock{
+    text-align: center;
+    display: block;
+    color: #fff;
+    margin: 10px 35px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(255, 255, 255, 0.2);
+    padding: 10px;
+}
+
+.table-row .last-reply .btn-unlock{
+    background-color: rgb(112, 220, 17) !important;
+}
+
+.table-row .last-reply .btn-lock{
+    background-color: rgb(220, 17, 17) !important;
+}
+
 .table-row .status{
     flex: 5%;
     font-size: 30px;
@@ -342,6 +414,7 @@ footer{
 .table-row .last-reply{
     flex: 15%;
 }
+
 
 /* navigation path*/
 .navigate{
@@ -447,10 +520,13 @@ footer{
 }
 
 .comment-area input{
-    float: right;
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.categorie{
+    width: 50%;
 }
 
 .comment-area input:hover{

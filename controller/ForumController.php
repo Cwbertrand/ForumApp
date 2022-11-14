@@ -70,7 +70,7 @@ use Model\Managers\MessageManager;
         }
 
         //// INSERT SUJET /////
-        /*public function insertSubject($id){
+        public function insertSubject($id){
             
             $messageManager = new MessageManager();
             $subjectManager = new SubjectManager();
@@ -90,7 +90,7 @@ use Model\Managers\MessageManager;
 
                 //this redirectTo() is from AbstractController class which demands 3 parameters
                 $this->redirectTo('forum', 'listSubject', $id);
-        }*/
+        }
 
         ///// INSERT MESSAGES ///
         public function insertMessage($id){

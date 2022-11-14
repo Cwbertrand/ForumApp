@@ -22,6 +22,7 @@
                 <nav>
                     <div id="nav-left">
                         <a href="/">Accueil</a>
+                        <a href="index.php?ctrl=forum&action=listCategorie">Forums</a>
 
                         <?php
                         if(App\Session::isAdmin()){
@@ -44,19 +45,10 @@
                         else{
                             ?>
                             <a href="./view/security/login.php">Connexion</a>
-                            <a href="/security/register.html">Inscription</a>
+                            <a href="./view/security/register.php">Inscription</a>
 
                             <!--NavBar Section-->
                             <div class="navbar">
-                                <nav class="navigation hide" id="navigation">
-                                    <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
-                                    <ul class="nav-list">
-                                        <li class="nav-item"><a href="index.php?ctrl=forum&action=AddMessage">Create A Topic</a></li>
-                                        <li class="nav-item"><a href="index.php?ctrl=forum&action=listCategorie">Forums</a></li>
-                                        
-                                    </ul>
-                                </nav>
-                                <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
                                 <div class="brand">My Forum</div>
                             </div>
 
