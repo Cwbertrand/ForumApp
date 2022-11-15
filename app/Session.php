@@ -2,8 +2,6 @@
 
     namespace App;
 
-    require_once("./model/entities/User.php");
-
     class Session{
 
         private static $categories = ['error', 'success'];

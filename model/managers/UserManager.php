@@ -25,21 +25,11 @@
         }
 
         public function UserEmail($email){
-            $sql = "SELECT email, pseudo, role FROM  ".$this->tableName."
+            $sql = "SELECT id_user, email, pseudo, role FROM  ".$this->tableName."
                     WHERE email = :email";
                     
             return $this->getSingleScalarResult(
                 DAO::select($sql, ['email' => $email])
-            );
-        }
-
-        public function userId($id){
-            $sql = "SELECT * FROM  ".$this->tableName."
-                    WHERE id_user = :id";
-                    
-            return $this->getMultipleResults(
-                DAO::select($sql, ['id' => $id]),
-                $this->className
             );
         }
 

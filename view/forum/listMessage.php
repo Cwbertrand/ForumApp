@@ -7,6 +7,10 @@ $idtopic = $result["data"]['idtopic'];
 <h1>liste messages</h1>
 
     <div class="container">
+        <!--Navigation-->
+        <div class="navigate">
+            <span> <a href="index.php?ctrl=forum&action=listSubject&id=<?= $idtopic ;?>">les Subjects</a> >> <a href="index.php?ctrl=forum&action=listCategorie">MyForum - Categorie</a> >> <a href="">les Subjects</a></span>
+        </div>
         <!--Topic Section-->
         <div class="topic-container">
             <!--Original thread-->
@@ -36,7 +40,7 @@ $idtopic = $result["data"]['idtopic'];
         <form method="POST" action="index.php?ctrl=forum&action=insertMessage&id=<?= $idtopic ?>">
             <div class="comment-area" id="comment-area">
                 <textarea name="comment" id="" placeholder="comment here ... "></textarea>
-                <input type="submit" name="submit" value="Submit">
+                <input type="submit" name="submit" value="Comment">
             </div>
         </form>
     </div>

@@ -378,8 +378,8 @@ footer{
     background-color: #131415;
 }
 
-.table-row .last-reply .btn-unlock,
-.table-row .last-reply .btn-lock{
+.btn-unlock,
+.btn-lock{
     text-align: center;
     display: block;
     color: #fff;
@@ -389,11 +389,11 @@ footer{
     padding: 10px;
 }
 
-.table-row .last-reply .btn-unlock{
+.btn-unlock{
     background-color: rgb(112, 220, 17) !important;
 }
 
-.table-row .last-reply .btn-lock{
+.btn-lock{
     background-color: rgb(220, 17, 17) !important;
 }
 

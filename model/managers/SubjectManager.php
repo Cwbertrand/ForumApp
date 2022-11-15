@@ -27,5 +27,17 @@
             
         }
 
+        public function deleteSubject($id){
+            $sql = "SET FOREIGN_KEY_CHECKS=0;
+                    DELETE FROM  ".$this->tableName." s
+                    WHERE s.id_subject = :id";
+                    
+            return $this->getOneOrNullResult(
+                DAO::delete($sql, ['id' => $id]),
+                $this->className
+            );
+            
+        }
+
 
     }

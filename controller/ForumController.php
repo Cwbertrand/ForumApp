@@ -3,14 +3,14 @@
     namespace Controller;
 
 use App\Session;
-use Model\Managers\SubjectManager;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\CategorieManager;
 use Model\Managers\MessageManager;
-use Model\Managers\UserManager;
+use Model\Managers\SubjectManager;
+use Model\Managers\CategorieManager;
 
     class ForumController extends AbstractController implements ControllerInterface{
+
 
         public function listSubject($id){
 
@@ -74,16 +74,16 @@ use Model\Managers\UserManager;
         public function insertSubject($id){
             
             $messageManager = new MessageManager();
-            $userManager = new UserManager();
             $subjectManager = new SubjectManager();
+
             //userid is diclared to be fixed which is = to userid 1
-            $userId = \App\Session::getUser();
-            var_dump($userId); die();
-            $status = true;
+            $userId = 11; //\App\Session::getUser()->getId();
+            //var_dump($userId); die();
             
             //filtre l'input
             $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
+            $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_NUMBER_INT);
                 if($subject && $message){
                     //the add() function is from the manager.php which demands that you pass some parameters to be able to insert values
                     $subjectid = $subjectManager->add(["categorie_id" => $id, "statuspost" => $status, "user_id" => $userId, "Theme" => $subject]);
@@ -100,7 +100,7 @@ use Model\Managers\UserManager;
             
             $MessageManager = new MessageManager();
             //userid is diclared to be fixed which is = to userid 1
-            $userId = 1;
+            $userId = \App\Session::getUser()->getId();
 
             //filtre l'input
             $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -148,5 +148,26 @@ use Model\Managers\UserManager;
             return [
                 "view" => VIEW_DIR."forum/profilepage.php"
             ];
+        }
+
+        ///// DELETE BY ADMIN ///
+        public function deleteCategorie($id){
+            $categorieManager = new CategorieManager;
+            $categorieManager->deleteCategorie($id);
+            $this->redirectTo('forum', 'listCategorie');
+        }
+
+        public function deleteSubject($id){
+            $subjectManager = new SubjectManager;
+            $subjectManager->deleteSubject($id);
+            $this->redirectTo('forum', 'listCategorie', $id);
+        }
+
+        ////// MODIFIER PAR ADMIN //////
+        public function modifierCategorie($id, $newNomCategorie){
+            $categorieManager = new CategorieManager;
+            $categorieManager->modifierCategorie($id, $newNomCategorie);
+            var_dump($categorieManager); die();
+            $this->redirectTo('forum', 'listCategorie');
         }
     }

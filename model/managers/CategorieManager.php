@@ -4,6 +4,7 @@ namespace Model\Managers;
 
 use App\Manager;
 use App\DAO;
+use Model\Entities\Categorie;
 
 class CategorieManager extends Manager{
     protected $className = "Model\Entities\Categorie";
@@ -11,5 +12,30 @@ class CategorieManager extends Manager{
 
     public function __construct(){
         parent::connect();
+    }
+
+    public function deleteCategorie($id){
+        $sql = "DELETE FROM  ".$this->tableName."
+                WHERE id_categorie = :id";
+                
+        return $this->getOneOrNullResult(
+            DAO::delete($sql, ['id' => $id]),
+            $this->className
+        );
+    }
+
+    public function modifierCategorie($id, $newNomCategorie){
+
+        $sql = "UPDATE ".$this->tableName."
+                SET nomCategorie = :newNomCategorie
+                WHERE id_categorie = :id";
+                
+        return $this->getOneOrNullResult(
+            DAO::update($sql, [
+                    'nomCategorie' => $newNomCategorie,
+                    'id' => $id
+                ]),
+            $this->className
+        );
     }
 }
