@@ -43,7 +43,7 @@
         }
 
         public static function isAdmin(){
-            if(self::getUser() && $_SESSION['user']['role'] === 1){
+            if(self::getUser() && $_SESSION['user']->getRole() == 1){
                 return true;
             }
             return false;

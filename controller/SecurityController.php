@@ -25,25 +25,25 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
                 if (strlen($pseudo) < 3 || strlen($pseudo) > 30) {
-                    echo  'Votre pseudo dois contenir 3 caractères minimum et 30 maximum !!';
+                    Session::addFlash("error", "Votre pseudo dois contenir 3 caractères minimum et 30 maximum !!");
                     header('Location: view/security/register.php');
                     die();
 
                     //error handling for email
                 }elseif(empty($email)){
-                    echo "Votre  email  c'est pas correct !!";
+                    Session::addFlash("error", "Votre  email  c'est pas correct !!");
                     header('Location: view/security/register.php');
                     die();
 
                     //error handling for password
                 }elseif (strlen($password) < 4) {
-                    echo "Votre mot de pas dois contenir 3 caractères minimum et 30 maximum !!!!";
+                    Session::addFlash("error", "Votre mot de pas dois contenir 3 caractères minimum et 30 maximum !!!!");
                     header('Location: view/security/register.php');
                     die();
 
                     //error handling for confirm password
                 }elseif ($confirmPassword !== $password) {
-                    echo 'Les mots de passe ne sont pas identique !!';
+                    Session::addFlash("error", "Les mots de passe ne sont pas identique !!");
                     header('Location: view/security/register.php');
                     die();
                 }else {
@@ -72,22 +72,28 @@ class SecurityController extends AbstractController implements ControllerInterfa
             if ($email && $password) {
 
                 //getting the user's password from the database from the query function (userPassword)
-                $Userpassword = $usermanager->UserPassword($email);
+                // $loginpassword = $usermanager->UserPassword($password);
+                // var_dump($loginpassword); die;
                 
                 //getting the user's Email from the database from the query function (userEmail)
                 $userEmail = $usermanager->UserEmail($email);
+                $loginpassword = $userEmail->getPassword();
+                //var_dump($userEmail); die;
 
                 //verifying if inputed password is same with existing password in the database
-                if(password_verify($password, $Userpassword['password'])){
+                if(password_verify($password, $loginpassword)){
+
 
                     //if same, user session logged in should start
                     session::setUser($userEmail);
-                    Session::addFlash("success", "Bienvenue ".$userEmail['pseudo']);
+                    //var_dump($userEmail); die;
+                    Session::addFlash("success", "Bienvenue ".$userEmail->getPseudo());
                     //header('Location: view/layout.php');
                     return $this->redirectTo('/');
                 }else {
-                    header('Location: view/security/login.php');
                     Session::addFlash("error", "Cet utilisateur n'existe pas !");
+                    return $this->redirectTo('view', 'security', 'login');
+                    //header('Location: view/security/login.php');
                 }
             }
             

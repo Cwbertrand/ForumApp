@@ -14,22 +14,12 @@
             parent::connect();
         }
 
-        public function UserPassword($email){
-            $sql = "SELECT password FROM  ".$this->tableName."
-                    WHERE email = :email";
-            
-            // this selects only the password of the user    
-            return $this->getSingleScalarResult(
-                DAO::select($sql, ['email' => $email])
-            );
-        }
-
         public function UserEmail($email){
-            $sql = "SELECT id_user, email, pseudo, role FROM  ".$this->tableName."
+            $sql = "SELECT * FROM  ".$this->tableName."
                     WHERE email = :email";
                     
-            return $this->getSingleScalarResult(
-                DAO::select($sql, ['email' => $email])
+            return $this->getOneOrNullResult(
+                DAO::select($sql, ['email' => $email], false),$this->className
             );
         }
 

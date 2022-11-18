@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+    <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/csS/style.css">
     
     <title>FORUM</title>
 </head>
@@ -22,8 +22,8 @@
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
-                <nav>
-                    <div id="nav-left">
+                <nav class="navbar-home">
+                    <div id="nav-left" class="navbar-left">
                         <a href="index.php?ctrl=home&action=/">Accueil</a>
                         <a href="index.php?ctrl=forum&action=listCategorie">Forums</a>
 
@@ -38,13 +38,13 @@
                         }
                         ?>
                     </div>
-                    <div id="nav-right">
+                    <div id="nav-right" class="navbar-right">
                     <?php
                         
                         if(App\Session::getUser()){
                             //var_dump($_SESSION['user']); die();
                             ?>
-                            <a href="index.php?ctrl=forum&action=profilePage"><span class="fas fa-user"></span>&nbsp;<?= $_SESSION['user']['pseudo']; ?></a>
+                            <a href="index.php?ctrl=forum&action=profilePage"><span class="fas fa-user"> &nbsp;&nbsp;</span>Compte&nbsp;<!--(= $_SESSION['user']['pseudo']; ?>)--></a>
                             <a href="\PROJECT%20IN%20PROGRESS/Forum/index.php?ctrl=security&action=logout">Déconnexion</a>
                             
                             <?php
@@ -99,32 +99,32 @@
     
     <script>
 
-        $(document).ready(function(){
-            $(".message").each(function(){
-                if($(this).text().length > 0){
-                    $(this).slideDown(500, function(){
-                        $(this).delay(3000).slideUp(500)
-                    })
-                }
-            })
-            $(".delete-btn").on("click", function(){
-                return confirm("Etes-vous sûr de vouloir supprimer?")
-            })
-            tinymce.init({
-                selector: '.post',
-                menubar: false,
-                plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                ],
-                toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-                content_css: '//www.tiny.cloud/css/codepen.min.css'
-            });
-        })
+        // $(document).ready(function(){
+        //     $(".message").each(function(){
+        //         if($(this).text().length > 0){
+        //             $(this).slideDown(500, function(){
+        //                 $(this).delay(3000).slideUp(500)
+        //             })
+        //         }
+        //     })
+        //     $(".delete-btn").on("click", function(){
+        //         return confirm("Etes-vous sûr de vouloir supprimer?")
+        //     })
+        //     tinymce.init({
+        //         selector: '.post',
+        //         menubar: false,
+        //         plugins: [
+        //             'advlist autolink lists link image charmap print preview anchor',
+        //             'searchreplace visualblocks code fullscreen',
+        //             'insertdatetime media table paste code help wordcount'
+        //         ],
+        //         toolbar: 'undo redo | formatselect | ' +
+        //         'bold italic backcolor | alignleft aligncenter ' +
+        //         'alignright alignjustify | bullist numlist outdent indent | ' +
+        //         'removeformat | help',
+        //         content_css: '//www.tiny.cloud/css/codepen.min.css'
+        //     });
+        // })
 
         
 

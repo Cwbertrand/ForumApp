@@ -177,6 +177,24 @@ header{
     display:flex;
     align-items: center;
 }
+
+.navbar-home{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 50px;
+}
+
+.navbar-left a,
+.navbar-right a{
+    padding: 10px 15px;
+    background-color:#f0d20e;
+    display: inline-block;
+    text-transform: uppercase;
+    border-radius: 7px;
+    margin: 0px 10px;
+
+    
+}
 .navigation{
     background-color:#52057b;
     padding: 10px;

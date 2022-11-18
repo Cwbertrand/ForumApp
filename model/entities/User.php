@@ -11,6 +11,7 @@ class User extends Entity{
     private $email;
     private $password;
     private $role;
+    private $ban;
 
     public function __construct($data)
     {
@@ -99,7 +100,7 @@ class User extends Entity{
 
     public function __toString()
     {
-        return $this->getPseudo();
+        return $this->getPseudo() .''. $this->getPassword();
     }
 
     /**
@@ -130,4 +131,24 @@ class User extends Entity{
                 return 'USER';
         }
 }
+
+    /**
+     * Get the value of ban
+     */ 
+    public function getBan()
+    {
+        return $this->ban;
+    }
+
+    /**
+     * Set the value of ban
+     *
+     * @return  self
+     */ 
+    public function setBan($ban)
+    {
+        $this->ban = $ban;
+
+        return $this;
+    }
 }

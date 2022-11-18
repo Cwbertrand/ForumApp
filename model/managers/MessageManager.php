@@ -25,4 +25,28 @@
             );
         }
 
+        public function deleteMessage($id){
+            $sql = "DELETE FROM  ".$this->tableName." m
+                    WHERE m.subject_id = :id";
+                    
+            return $this->getOneOrNullResult(
+                DAO::delete($sql, ['id' => $id]),
+                $this->className
+            );
+            
+        }
+
+        public function editMessage($id, $editMessage){
+            $sql = "UPDATE ".$this->tableName."
+                    SET message = :editmessage
+                    WHERE id_message = :id";
+                    
+            return $this->getOneOrNullResult(
+                DAO::update($sql, [
+                    'editmessage' => $editMessage,
+                    'id' => $id
+                ]),$this->className
+            );
+        }
+
     }

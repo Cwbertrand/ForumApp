@@ -39,5 +39,34 @@
             
         }
 
+        public function editSubject($id, $editSubject, $editStatus){
+            $sql = "UPDATE ".$this->tableName."
+                    SET theme = :editSubject,
+                    statusPost = :editStatus
+                    WHERE id_subject = :id";
+                    
+            return $this->getOneOrNullResult(
+                DAO::update($sql, [
+                    'editSubject' => $editSubject,
+                    'editStatus' => $editStatus,
+                    'id' => $id
+                ]),$this->className
+            );
+        }
+
+        public function lockSubject($id){
+            $sql = "UPDATE subject
+            SET statusPost = 1
+            WHERE id_subject = :id";
+            DAO::update($sql, ["id"=>$id]);
+        }
+
+        public function unlockSubject($id) {
+            $sql = "UPDATE subject
+            SET statusPost = 0
+            WHERE id_subject = :id";
+            DAO::update($sql, ["id"=>$id]);
+        }
+
 
     }

@@ -24,18 +24,16 @@ class CategorieManager extends Manager{
         );
     }
 
-    public function modifierCategorie($id, $newNomCategorie){
-
+    public function editCategorie($id, $newNomCategorie){
         $sql = "UPDATE ".$this->tableName."
                 SET nomCategorie = :newNomCategorie
                 WHERE id_categorie = :id";
                 
         return $this->getOneOrNullResult(
             DAO::update($sql, [
-                    'nomCategorie' => $newNomCategorie,
-                    'id' => $id
-                ]),
-            $this->className
+                'newNomCategorie' => $newNomCategorie,
+                'id' => $id
+            ]),$this->className
         );
     }
 }

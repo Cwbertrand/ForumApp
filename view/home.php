@@ -1,11 +1,7 @@
 <?php
     if(!App\Session::getUser()){
 ?>
-<p>
-    <a href="./view/security/login.php">Se connecter</a>
-    <span>&nbsp;-&nbsp;</span>
-    <a href="./view/security/register.php">S'inscrire</a>
-</p>
+
 <?php }?>
 
 <h1>BIENVENUE SUR LE FORUM</h1>

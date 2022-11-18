@@ -32,7 +32,7 @@ $categories = $result["data"]['categories'];
                 <!-- EDIT A CATEGORY-->
                 <form method="POST" action="index.php?ctrl=forum&action=modifierCategorie&id=<?= $categorie->getId() ;?>">
                     <div class="comment-area hide" id="reply-area">
-                        <input type="text" >
+                        <input type="text" name="newNomCategorie">
                         <input type="submit" name="submit" value="Sauguader">
                     </div>
                 </form>
@@ -47,7 +47,7 @@ $categories = $result["data"]['categories'];
                     <?php if (\App\Session::isAdmin()) { ?>
                         <div class="subforum-description subforum-column">
                             <div class="comment btn-unlock">
-                                <button onclick="showReply()">Modifier</button>
+                                <a onclick="showReply()" style="cursor: pointer;"> Modifier </a>
                             </div>
                         </div>
 

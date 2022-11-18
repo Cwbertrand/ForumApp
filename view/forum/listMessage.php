@@ -22,7 +22,7 @@ $idtopic = $result["data"]['idtopic'];
             <?php foreach($messages as $message){ ?>
                 <div class="body">
                     <div class="authors">
-                        <div class="username"><a href=""><?= $message->getUser() ?></a></div>
+                        <div class="username"><a href=""><?= $message->getUser()->getPseudo() ?></a></div>
                         <div>Role</div>
                         <img src="https://cdn.pixabay.com/photo/2015/11/06/13/27/ninja-1027877_960_720.jpg" alt="">
                         <div>Points: <u>4586</u></div>
@@ -31,7 +31,12 @@ $idtopic = $result["data"]['idtopic'];
                         <div>Date posté:   <u><?= $message->getCreateAt(); ?></u></div>
                         <p> <?= $message->getMessage() ?> </p>
                     </div>
-                </div>
+                    <div class="subforum-description subforum-column">
+                        <div class="comment btn-unlock">
+                            <a href="index.php?ctrl=forum&action=editmessage&id=<?= $message->getId() ?>" style="cursor: pointer;"> Modifier </a>
+                        </div>
+                    </div>
+        </div>
             <?php } ?>
 
         </div>

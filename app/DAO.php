@@ -92,10 +92,10 @@
         {
             try{
                 $stmt = self::$bdd->prepare($sql);
+                //var_dump($sql, $params); die;
                 $stmt->execute($params);
             
                 $results = ($multiple) ? $stmt->fetchAll() : $stmt->fetch();
-
                 $stmt->closeCursor();
                 return ($results == false) ? null : $results;
             }
